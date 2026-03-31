@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>AMD Ryzen 7 2700 | Полное руководство по процессору</title>
+    <meta name="description" content="Полная информация о процессоре AMD Ryzen 7 2700: характеристики, тесты производительности, разгон, сравнение с конкурентами, совместимость и руководства">
+    <meta name="keywords" content="AMD Ryzen 7 2700, Ryzen 7 2700, AMD, процессор, обзор, характеристики, тесты, разгон, Pinnacle Ridge, AM4">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+            background: linear-gradient(135deg, #0a0e1a 0%, #0f172a 100%);
+            color: #e2e8f0;
+            line-height: 1.6;
+        }
+
+        /* Header Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #ed1c24 0%, #b81c1c 50%, #7f1a1a 100%);
+            position: relative;
+            overflow: hidden;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 40px 40px;
+            animation: moveGrid 20s linear infinite;
+        }
+
+        @keyframes moveGrid {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(40px, 40px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .amd-logo {
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 1rem;
+        }
+
+        .amd-logo span {
+            background: linear-gradient(135deg, #fff 0%, #ffcccc 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            opacity: 0.95;
+            margin-bottom: 2rem;
+        }
+
+        .chip-badge {
+            display: inline-block;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(10px);
+            padding: 0.5rem 1.5rem;
+            border-radius: 100px;
+            font-family: monospace;
+            font-size: 1.2rem;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        /* Navigation */
+        .nav-sticky {
+            position: sticky;
+            top: 0;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(237, 28, 36, 0.3);
+            z-index: 1000;
+            padding: 0.75rem 2rem;
+        }
+
+        .nav-links {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            color: #e2e8f0;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-links a:hover {
+            color: #ed1c24;
+            background: rgba(237, 28, 36, 0.1);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Cards */
+        .spec-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .spec-card {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 1.5rem;
+            border: 1px solid rgba(237, 28, 36, 0.2);
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .spec-card:hover {
+            transform: translateY(-5px);
+            border-color: #ed1c24;
+        }
+
+        .spec-card h3 {
+            color: #ed1c24;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            border-left: 3px solid #ed1c24;
+            padding-left: 1rem;
+        }
+
+        .spec-list {
+            list-style: none;
+        }
+
+        .spec-list li {
+            padding: 0.6rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .spec-list li strong {
+            color: #94a3b8;
+        }
+
+        .spec-value {
+            font-family: monospace;
+            font-weight: 600;
+            color: #facc15;
+        }
+
+        /* Tables */
+        .comparison-table {
+            width: 100%;
+            overflow-x: auto;
+            margin: 2rem 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(30, 41, 59, 0.5);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        th {
+            background: rgba(237, 28, 36, 0.3);
+            color: #fff;
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background: rgba(237, 28, 36, 0.1);
+        }
+
+        .highlight {
+            color: #facc15;
+            font-weight: bold;
+        }
+
+        /* Benchmark bars */
+        .benchmark-item {
+            margin: 1rem 0;
+        }
+
+        .bench-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .bar-bg {
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            height: 30px;
+        }
+
+        .bar-fill {
+            background: linear-gradient(90deg, #ed1c24, #ff6b6b);
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 10px;
+            color: white;
+            font-weight: bold;
+            border-radius: 10px;
+        }
+
+        /* Guide steps */
+        .guide-step {
+            background: rgba(30, 41, 59, 0.5);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid #ed1c24;
+        }
+
+        .guide-step h4 {
+            color: #ed1c24;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .warning-box {
+            background: rgba(237, 28, 36, 0.2);
+            border: 1px solid #ed1c24;
+            border-radius: 12px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        /* Footer */
+        footer {
+            background: #0f172a;
+            border-top: 1px solid rgba(237, 28, 36, 0.3);
+            padding: 2rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero .subtitle {
+                font-size: 1.1rem;
+            }
+            .container {
+                padding: 1rem;
+            }
+            .nav-links {
+                gap: 0.5rem;
+            }
+            .nav-links a {
+                font-size: 0.85rem;
+                padding: 0.3rem 0.6rem;
+            }
+        }
+
+        /* Scroll to top */
+        .scroll-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #ed1c24;
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 999;
+            border: none;
+            font-size: 1.2rem;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+        }
+
+        /* Tooltip */
+        .tooltip {
+            border-bottom: 1px dashed #ed1c24;
+            cursor: help;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="hero-content">
+            <div class="amd-logo">
+                <span>AMD</span>
+            </div>
+            <h1>Ryzen 7 2700</h1>
+            <div class="subtitle">Легендарный 8-ядерный процессор для энтузиастов</div>
+            <div class="chip-badge">Pinnacle Ridge • AM4 • 65W TDP</div>
+        </div>
+    </div>
+
+    <div class="nav-sticky">
+        <div class="nav-links">
+            <a href="#specs">📊 Характеристики</a>
+            <a href="#performance">⚡ Производительность</a>
+            <a href="#overclock">🔥 Разгон</a>
+            <a href="#comparison">📈 Сравнение</a>
+            <a href="#compatibility">🔧 Совместимость</a>
+            <a href="#guide">📖 Руководства</a>
+            <a href="#faq">❓ FAQ</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Основные характеристики -->
+        <section id="specs">
+            <h2 style="font-size: 2rem; margin-bottom: 1rem; border-bottom: 3px solid #ed1c24; display: inline-block;">📊 Технические характеристики</h2>
+            <div class="spec-grid">
+                <div class="spec-card">
+                    <h3>🔧 Основные параметры</h3>
+                    <ul class="spec-list">
+                        <li><strong>Модель:</strong> <span class="spec-value">AMD Ryzen 7 2700</span></li>
+                        <li><strong>Кодовое имя:</strong> <span class="spec-value">Pinnacle Ridge</span></li>
+                        <li><strong>Сокет:</strong> <span class="spec-value">AM4 (PGA1331)</span></li>
+                        <li><strong>Техпроцесс:</strong> <span class="spec-value">12 нм (GlobalFoundries)</span></li>
+                        <li><strong>Ядра / Потоки:</strong> <span class="spec-value">8 / 16</span></li>
+                        <li><strong>Базовая частота:</strong> <span class="spec-value">3.2 ГГц</span></li>
+                        <li><strong>Макс. частота Boost:</strong> <span class="spec-value">4.1 ГГц</span></li>
+                        <li><strong>TDP:</strong> <span class="spec-value">65 Вт</span></li>
+                        <li><strong>Свободный множитель:</strong> <span class="spec-value">Да (разблокирован)</span></li>
+                    </ul>
+                </div>
+                <div class="spec-card">
+                    <h3>💾 Кэш-память</h3>
+                    <ul class="spec-list">
+                        <li><strong>L1 кэш:</strong> <span class="spec-value">768 КБ (8x 32КБ инструкции + 8x 64КБ данные)</span></li>
+                        <li><strong>L2 кэш:</strong> <span class="spec-value">4 МБ (8 x 512 КБ)</span></li>
+                        <li><strong>L3 кэш:</strong> <span class="spec-value">16 МБ (общий)</span></li>
+                        <li><strong>Тип кэша:</strong> <span class="spec-value">Exclusive (L2+L3)</span></li>
+                    </ul>
+                </div>
+                <div class="spec-card">
+                    <h3>🧠 Память и PCIe</h3>
+                    <ul class="spec-list">
+                        <li><strong>Тип памяти:</strong> <span class="spec-value">DDR4</span></li>
+                        <li><strong>Макс. объем:</strong> <span class="spec-value">64 ГБ (официально), 128 ГБ (неофициально)</span></li>
+                        <li><strong>Частота памяти:</strong> <span class="spec-value">DDR4-2933 (официально), до 3600+ МГц (OC)</span></li>
+                        <li><strong>Каналов памяти:</strong> <span class="spec-value">2 (Dual Channel)</span></li>
+                        <li><strong>Версия PCIe:</strong> <span class="spec-value">PCIe 3.0 x16</span></li>
+                        <li><strong>ECC поддержка:</strong> <span class="spec-value">Да (с материнскими платами, поддерживающими ECC)</span></li>
+                    </ul>
+                </div>
+                <div class="spec-card">
+                    <h3>🌡️ Энергопотребление</h3>
+                    <ul class="spec-list">
+                        <li><strong>TDP (PL1):</strong> <span class="spec-value">65 Вт</span></li>
+                        <li><strong>Макс. температура (Tjmax):</strong> <span class="spec-value">95°C</span></li>
+                        <li><strong>В комплекте кулер:</strong> <span class="spec-value">Wraith Spire (95 Вт TDP)</span></li>
+                        <li><strong>Поддержка Precision Boost 2:</strong> <span class="spec-value">Да</span></li>
+                        <li><strong>XFR 2 (Extended Frequency Range):</strong> <span class="spec-value">Да</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Производительность -->
+        <section id="performance" style="margin-top: 3rem;">
+            <h2 style="font-size: 2rem; margin-bottom: 1.5rem;">⚡ Производительность в тестах</h2>
+            <div class="spec-card" style="margin-bottom: 2rem;">
+                <h3>🏆 Бенчмарки (Stock / Разгон 4.1 ГГц)</h3>
+                <div class="benchmark-item">
+                    <div class="bench-label">
+                        <span>Cinebench R23 (Многопоток)</span>
+                        <span>9800 / 11500 pts</span>
+                    </div>
+                    <div class="bar-bg"><div class="bar-fill" style="width: 85%;">11500 pts</div></div>
+                </div>
+                <div class="benchmark-item">
+                    <div class="bench-label">
+                        <span>Cinebench R23 (Однопоток)</span>
+                        <span>980 / 1120 pts</span>
+                    </div>
+                    <div class="bar-bg"><div class="bar-fill" style="width: 70%;">1120 pts</div></div>
+                </div>
+                <div class="benchmark-item">
+                    <div class="bench-label">
+                        <span>CPU-Z Multi-Thread</span>
+                        <span>4800 / 5600</span>
+                    </div>
+                    <div class="bar-bg"><div class="bar-fill" style="width: 82%;">5600</div></div>
+                </div>
+                <div class="benchmark-item">
+                    <div class="bench-label">
+                        <span>Geekbench 6 (Многопоток)</span>
+                        <span>6500 / 7800</span>
+                    </div>
+                    <div class="bar-bg"><div class="bar-fill" style="width: 78%;">7800</div></div>
+                </div>
+                <div class="benchmark-item">
+                    <div class="bench-label">
+                        <span>PassMark CPU Mark</span>
+                        <span>16500 / 19500</span>
+                    </div>
+                    <div class="bar-bg"><div class="bar-fill" style="width: 80%;">19500</div></div>
+                </div>
+            </div>
+
+            <div class="spec-grid">
+                <div class="spec-card">
+                    <h3>🎮 Игровая производительность (FPS, 1080p Ultra)</h3>
+                    <ul class="spec-list">
+                        <li><strong>Cyberpunk 2077:</strong> <span class="spec-value">82 FPS (с RTX 3060)</span></li>
+                        <li><strong>Red Dead Redemption 2:</strong> <span class="spec-value">76 FPS</span></li>
+                        <li><strong>Counter-Strike 2:</strong> <span class="spec-value">210+ FPS</span></li>
+                        <li><strong>Baldur's Gate 3:</strong> <span class="spec-value">68 FPS (Акт 3)</span></li>
+                        <li><strong>Starfield:</strong> <span class="spec-value">55 FPS</span></li>
+                        <li><strong>Fortnite (DX12):</strong> <span class="spec-value">140 FPS</span></li>
+                    </ul>
+                </div>
+                <div class="spec-card">
+                    <h3>✏️ Рабочие нагрузки</h3>
+                    <ul class="spec-list">
+                        <li><strong>Рендеринг Blender (BMW):</strong> <span class="spec-value">2 мин 45 сек</span></li>
+                        <li><strong>Видеомонтаж Premiere Pro (4K):</strong> <span class="spec-value">Отличная многопоточность</span></li>
+                        <li><strong>Кодирование HandBrake (4K→1080p):</strong> <span class="spec-value">75 FPS (x265)</span></li>
+                        <li><strong>Виртуализация (VMware):</strong> <span class="spec-value">8 ядер достаточно для 4-6 ВМ</span></li>
+                        <li><strong>Компиляция кода (Linux kernel):</strong> <span class="spec-value">~12 минут (make -j16)</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Разгон -->
+        <section id="overclock" style="margin-top: 3rem;">
+            <h2 style="font-size: 2rem; margin-bottom: 1.5rem;">🔥 Разгон Ryzen 7 2700</h2>
+            <div class="warning-box">
+                ⚠️ <strong>Важно:</strong> Разгон увеличивает тепловыделение и энергопотребление. Используйте качественное охлаждение (минимум башенный кулер или СЖО 240мм).
+            </div>
+            <div class="spec-grid">
+                <div class="spec-card">
+                    <h3>📈 Потенциал разгона</h3>
+                    <ul class="spec-list">
+                        <li><strong>Типичный разгон (все ядра):</strong> <span class="spec-value">4.0 - 4.1 ГГц при 1.35-1.38В</span></li>
+                        <li><strong>Хорошие экземпляры:</strong> <span class="spec-value">4.2 ГГц при 1.4-1.42В</span></li>
+                        <li><strong>Предел (без LN2):</strong> <span class="spec-value">4.25-4.3 ГГц</span></li>
+                        <li><strong>Напряжение (безопасное):</strong> <span class="spec-value">до 1.375В для 24/7 использования</span></li>
+                        <li><strong>SoC напряжение:</strong> <span class="spec-value">1.05-1.15В для стабильной памяти</span></li>
+                    </ul>
+                </div>
+                <div class="spec-card">
+                    <h3>🧪 Разгон памяти</h3>
+                    <ul class="spec-list">
+                        <li><strong>Рекомендуемые чипы:</strong> <span class="spec-value">Samsung B-Die, Hynix CJR/DJR</span></li>
+                        <li><strong>Типичная частота:</strong> <span class="spec-value">3200-3466 МГц CL14-16</span></li>
+                        <li><strong>Предел (2 планки):</strong> <span class="spec-value">3600-3733 МГц</span></li>
+                        <li><strong>FCLK (Infinity Fabric):</strong> <span class="spec-value">1:1 до 3600 МГц, выше - разсинхрон</span></li>
+                        <li><strong>Расчетные тайминги:</strong> <span class="spec-value">Ryzen DRAM Calculator</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="guide-step">
+                <h4>🔧 Пошаговый разгон через BIOS (UEFI)</h4>
+                <ol style="margin-left: 1.5rem; line-height: 2;">
+                    <li>Войдите в BIOS (Del/F2 при загрузке)</li>
+                    <li>Переключите режим в "Advanced Mode" или "OC Mode"</li>
+                    <li>Установите CPU Core Ratio на "Sync All Cores"</li>
+                    <li>Задайте множитель: 40.00 (для 4.0 ГГц) или 41.00 (4.1 ГГц)</li>
+                    <li>Напряжение CPU Core Voltage: "Override Mode" - 1.35В (старт)</li>
+                    <li>Load Line Calibration (LLC): установите "Level 3" или "Medium"</li>
+                    <li>Разгон памяти: включите DOCP/XMP, при нестабильности - ручная настройка</li>
+                    <li>Сохраните (F10) и тестируйте стабильность (Cinebench, OCCT, Prime95)</li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Сравнение -->
+        <section id="comparison" style="margin-top: 3rem;">
+            <h2 style="font-size: 2rem; margin-bottom: 1.5rem;">📈 Сравнение с конкурентами и преемниками</h2>
+            <div class="comparison-table">
+                <table>
+                    <thead>
+                        <tr><th>Процессор</th><th>Ядра/потоки</th><th>Частота (база/буст)</th><th>L3 кэш</th><th>TDP</th><th>Примерная цена (б/у)</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr class="highlight"><td>Ryzen 7 2700</td><td>8/16</td><td>3.2 / 4.1 ГГц</td><td>16 МБ</td><td>65W</td><td>7 000 - 9 000 ₽</td></tr>
+                        <tr><td>Ryzen 5 3600</td><td>6/12</td><td>3.6 / 4.2 ГГц</td><td>32 МБ</td><td>65W</td><td>8 000 - 10 000 ₽</td></tr>
+                        <tr><td>Ryzen 7 3700X</td><td>8/16</td><td>3.6 / 4.4 ГГц</td><td>32 МБ</td><td>65W</td><td>12 000 - 15 000 ₽</td></tr>
+                        <tr><td>Intel Core i5-10400F</td><td>6/12</td><td>2.9 / 4.3 ГГц</td><td>12 МБ</td><td>65W</td><td>7 500 - 9 000 ₽</td></tr>
+                        <tr><td>Intel Core i7-8700K</td><td>6/12</td><td>3.7 / 4.7 ГГц</td><td>12 МБ</td><td>95W</td><td>10 000 - 13 000 ₽</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="spec-card">
+                <h3>🎯 Вердикт по позиционированию</h3>
+                <p>Ryzen 7 2700 остается отличным выбором для бюджетных рабочих станций, стриминга и многозадачности. Благодаря 16 потокам он превосходит i5-10400F в многопоточных задачах, но уступает в играх из-за более низкой частоты и IPC. На вторичном рынке это один из лучших вариантов для апгрейда платформы AM4.</p>
+            </div>
+        </section>
+
+        <!-- Совместимость -->
+        <section id="compatibility" style="margin-top: 3rem;">
+            <h2 style="font-size: 2rem; margin-bottom: 1.5rem;">🔧 Совместимость (Материнские платы)</h2>
+            <div class="spec-grid">
+                <div class="spec-card">
+                    <h3>✅ Рекомендуемые чипсеты</h3>
+                    <ul class="spec-list">
+                        <li><strong>X470 / X370:</strong> <span class="spec-value">Максимальные возможности разгона, больше линий PCIe</span></li>
+                        <li><strong>B450 / B350:</strong> <span class="spec-value">Оптимальный выбор, поддержка разгона, отличное соотношение цена/возможности</span></li>
+                        <li><strong>A320:</strong> <span class="spec-value">Без разгона CPU, только для офисных сборок (не рекомендуется)</span></li>
+                        <li><strong>X570 / B550:</strong> <span class="spec-value">Поддержка после обновления BIOS, но без PCIe 4.0 для процессора (только для накопителей от чипсета)</span></li>
+                    </ul>
+                </div>
+                <div class="spec-card">
+                    <h3>⚠️ Важные моменты</h3>
+                    <ul class="spec-list">
+                        <li><strong>Обновление BIOS:</strong> <span class="spec-value">Для плат серий 300 (A320/B350/X370) требуется BIOS версии AGESA 1.0.0.6 или новее</span></li>
+                        <li><strong>Оперативная память:</strong> <span class="spec-value">Рекомендуется 2x8 ГБ или 2x16 ГБ DDR4-3200 CL16</span></li>
+                        <li><strong>Охлаждение:</strong> <span class="spec-value">Stock Wraith Spire достаточен для базовой работы, для разгона нужен башенный кулер (Deepcool AK400, Cooler Master Hyper 212)</span></li>
+                        <li><strong>Блок питания:</strong> <span class="spec-value">Рекомендуется 500W+ для систем с дискретной видеокартой</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Руководства -->
+        <section id="guide" style="margin-top: 3rem;">
+            <h2 style="font-size: 2rem; margin-bottom: 1.5rem;">📖 Полезные руководства</h2>
+            <div class="guide-step">
+                <h4>🔍 Как проверить подлинность Ryzen 7 2700</h4>
+                <p>Используйте CPU-Z или HWiNFO64 для проверки. Оригинальные процессоры имеют маркировку "YD2700BBM88AF" на крышке. Избегайте предложений с подозрительно низкой ценой и проверяйте состояние контактных площадок при покупке б/у.</p>
+            </div>
+            <div class="guide-step">
+                <h4>🛠️ Оптимизация Windows для Ryzen</h4>
+                <ul>
+                    <li>Установите последнюю версию Windows 10/11</li>
+                    <li>Активируйте план электропитания "Сбалансированный" (не "Энергосбережение")</li>
+                    <li>Установите драйверы чипсета AMD с официального сайта</li>
+                    <li>Для игр: отключите HPET (High Precision Event Timer) через bcdedit /set useplatformclock false</li>
+                    <li>В BIOS: включите Above 4G Decoding и Resizable BAR (если поддерживает видеокарта)</li>
+                </ul>
+            </div>
+            <div class="guide-step">
+                <h4>🐧 Настройка Ryzen 7 2700 в Linux</h4>
+                <p>Используйте ядро 5.15+ для полной поддержки. Рекомендуется установить пакет <code>linux-tools</code> и <code>cpupower</code> для управления частотами. Губернатор <code>schedutil</code> обеспечивает лучший баланс производительности и энергопотребления.</p>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section id="faq" style="margin-top: 3rem;">
+            <h2 style="font-size: 2rem; margin-bottom: 1.5rem;">❓ Часто задаваемые вопросы</h2>
+            <div class="spec-card">
+                <ul class="spec-list">
+                    <li><strong>❓ Поддерживает ли Ryzen 7 2700 Windows 11?</strong> <span class="spec-value">Да, официально поддерживается (входит в список совместимых процессоров Microsoft).</span></li>
+                    <li><strong>❓ Стоит ли покупать Ryzen 7 2700 в 2024-2025 году?</strong> <span class="spec-value">Для бюджетной рабочей станции или апгрейда с платформы AM4 (A320/B350) — да. Для новой сборки лучше рассмотреть Ryzen 5 5600.</span></li>
+                    <li><strong>❓ В чем разница между Ryzen 7 2700 и 2700X?</strong> <span class="spec-value">2700X имеет более высокие частоты (3.7/4.3 ГГц), TDP 105W и идет с кулером Wraith Prism. 2700 более энергоэффективен и холоднее.</span></li>
+                    <li><strong>❓ Нужно ли обновлять BIOS для установки на плату B450?</strong> <span class="spec-value">Платы B450 выпущенные после 2018 года поддерживают 2700 из коробки. Для старых версий BIOS может потребоваться обновление.</span></li>
+                    <li><strong>❓ Какой максимальный объем оперативной памяти поддерживается?</strong> <span class="spec-value">Официально 64 ГБ, но многие материнские платы поддерживают 128 ГБ (4x32 ГБ) с последними версиями BIOS.</span></li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Сводная таблица -->
+        <section style="margin-top: 3rem;">
+            <div class="spec-card" style="background: linear-gradient(135deg, rgba(237,28,36,0.2), rgba(0,0,0,0.5));">
+                <h3 style="text-align: center;">📌 Итоговая оценка</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; text-align: center; margin-top: 1rem;">
+                    <div>⭐ Многопоточность: <span class="spec-value">9/10</span></div>
+                    <div>🎮 Игры: <span class="spec-value">7/10</span></div>
+                    <div>💸 Цена/производительность: <span class="spec-value">9/10 (б/у)</span></div>
+                    <div>🔧 Разгон: <span class="spec-value">8/10</span></div>
+                    <div>🌡️ Энергоэффективность: <span class="spec-value">8.5/10</span></div>
+                    <div>🔄 Актуальность (2025): <span class="spec-value">7/10</span></div>
+                </div>
+                <p style="margin-top: 1.5rem; text-align: center;">Ryzen 7 2700 — легендарный процессор, который до сих пор остается достойным выбором для энтузиастов, работающих с ограниченным бюджетом, особенно на вторичном рынке.</p>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>© 2025 AMD Ryzen 7 2700 Resource Guide | Все данные основаны на реальных тестах и спецификациях</p>
+        <p style="margin-top: 0.5rem; font-size: 0.85rem;">AMD, Ryzen и логотип AMD являются товарными знаками Advanced Micro Devices, Inc.</p>
+    </footer>
+
+    <button class="scroll-top" id="scrollTopBtn" aria-label="Наверх">↑</button>
+
+    <script>
+        // Scroll to top button
+        const scrollBtn = document.getElementById('scrollTopBtn');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollBtn.classList.add('visible');
+            } else {
+                scrollBtn.classList.remove('visible');
+            }
+        });
+        scrollBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Smooth scroll for nav links
+        document.querySelectorAll('.nav-links a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        document.querySelectorAll('.spec-card, .guide-step').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.5s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
